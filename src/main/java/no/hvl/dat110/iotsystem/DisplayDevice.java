@@ -14,15 +14,33 @@ public class DisplayDevice {
 		System.out.println("Display starting ...");
 		
 		// TODO - START
-				
-		// create a client object and use it to
+
+		//Oppretter en klient for å koble ti brokeren
+		Client displayClient = new Client("display", Common.BROKERHOST, Common.BROKERPORT);
 		
-		// - connect to the broker - use "display" as the username
+		//Koble til brukeren
+		displayClient.connect();
+
 		// - create the temperature topic on the broker
+		displayClient.createTopic(Common.TEMPTOPIC);
+
 		// - subscribe to the topic
+		displayClient.subscribe(Common.TEMPTOPIC);
 		// - receive messages on the topic
-		// - unsubscribe from the topic
-		// - disconnect from the broker
+		for (int i = 0; i < COUNT; i++) {
+			Message msg = displayClient.receive();
+			if (msg != null) {
+				System.out.println("[Display] Received: " + msg.toString());
+			}
+			try {
+				Thread.sleep(2000); //Simulerer mottak av data hvert 2. sekund
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		// - unsubscribe from the topic and disconnect from the broker
+		displayClient.unsubscribe(Common.TEMPTOPIC);
+		displayClient.disconnect();
 		
 		// TODO - END
 		

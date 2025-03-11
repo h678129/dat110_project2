@@ -19,7 +19,7 @@ public class PublishMsg extends Message {
 
 	// Complete the constructor, get/set-methods, and toString method
 	// as described in the project text
-	private String getTopic() {
+    public String getTopic() {
 		return topic;
 	}
 	private void setTopic(String topic) {
