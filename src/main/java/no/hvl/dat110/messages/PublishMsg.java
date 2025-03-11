@@ -4,10 +4,14 @@ import no.hvl.dat110.common.TODO;
 
 public class PublishMsg extends Message {
 	
-	// message sent from client to create publish a message on a topic 
+	// message sent from client to create publish a message on a topic
+	private String topic;
+	private String message;
 
 	public PublishMsg(String user, String topic, String message) {
-
+		super(MessageType.SUBSCRIBE, user);
+		this.topic = topic;
+		this.message = message;
 	}
 
 	// TODO:
@@ -15,9 +19,23 @@ public class PublishMsg extends Message {
 
 	// Complete the constructor, get/set-methods, and toString method
 	// as described in the project text
-	
+	private String getTopic() {
+		return topic;
+	}
+	private void setTopic(String topic) {
+		this.topic = topic;
+	}
 	public String getMessage() {
-		
-		throw new UnsupportedOperationException(TODO.method());
+		if (message == null || message.isEmpty()) {
+			throw new UnsupportedOperationException("Message is empty.");
+		}
+		return message;
+	}
+	public void setMessage (String message) {
+		this.message = message;
+	}
+
+	public String toString() {
+		return "PublishMsg [topic " + topic + ", message = " + message + ", user = " + getUser() + "]";
 	}
 }
