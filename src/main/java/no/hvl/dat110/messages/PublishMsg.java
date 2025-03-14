@@ -9,7 +9,7 @@ public class PublishMsg extends Message {
 	private String message;
 
 	public PublishMsg(String user, String topic, String message) {
-		super(MessageType.SUBSCRIBE, user);
+		super(MessageType.PUBLISH, user);
 		this.topic = topic;
 		this.message = message;
 	}

@@ -154,7 +154,7 @@ public class Dispatcher extends Stopable {
 		Set<String> subscribers = storage.getSubscribers(topic);
 
 		for (String user : subscribers) {
-			ClientSession session = (ClientSession) storage.getSubscribers(topic);
+			ClientSession session = (ClientSession) storage.getSession(user);
 			if(session != null){
 				session.send(msg);
 				Logger.log("Message sent to " + user + " on topic " + topic);
