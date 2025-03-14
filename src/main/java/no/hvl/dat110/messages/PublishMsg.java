@@ -34,7 +34,7 @@ public class PublishMsg extends Message {
 	public void setMessage (String message) {
 		this.message = message;
 	}
-
+	@Override
 	public String toString() {
 		return "PublishMsg [topic " + topic + ", message = " + message + ", user = " + getUser() + "]";
 	}
